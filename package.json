@@ -1,0 +1,59 @@
+{
+  "name": "eye-202020-timer",
+  "version": "0.1.0",
+  "private": true,
+  "productName": "护眼计时器",
+  "description": "A small always-on-top desktop timer for the 20-20-20 eye protection rule.",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on tcp:5173 && electron .\"",
+    "lint": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.node.json",
+    "test": "vitest run",
+    "build": "tsc -p tsconfig.node.json && vite build",
+    "package:win": "npm run build && electron-builder --win zip --x64"
+  },
+  "build": {
+    "appId": "com.local.eye202020timer",
+    "productName": "护眼计时器",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "signAndEditExecutable": false,
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "eye-202020-timer-${version}-win-${arch}.${ext}"
+    },
+    "asar": true,
+    "compression": "maximum"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.17",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5",
+    "vitest": "^2.1.8",
+    "wait-on": "^8.0.1"
+  }
+}

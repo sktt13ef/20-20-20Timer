@@ -1,0 +1,482 @@
+:root {
+  color: #17211f;
+  background: #f6f5f1;
+  font-family:
+    Inter, "Microsoft YaHei", "PingFang SC", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, rgba(246, 245, 241, 0.96), rgba(235, 241, 237, 0.96)),
+    radial-gradient(circle at 15% 18%, rgba(205, 91, 55, 0.12), transparent 30%),
+    radial-gradient(circle at 82% 0%, rgba(47, 107, 95, 0.14), transparent 26%);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: 20px;
+  display: grid;
+  grid-template-rows: auto minmax(270px, 1fr) auto;
+  gap: 16px;
+}
+
+.topbar,
+.window-actions,
+.primary-controls,
+.tool-row,
+.stepper-controls {
+  display: flex;
+  align-items: center;
+}
+
+.topbar {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark {
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: #203832;
+  color: #faf9f4;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.brand h1 {
+  margin: 0;
+  color: #17211f;
+  font-size: 24px;
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.brand p {
+  margin: 5px 0 0;
+  color: #66716d;
+  font-size: 14px;
+}
+
+.window-actions,
+.primary-controls,
+.tool-row,
+.stepper-controls {
+  gap: 8px;
+}
+
+.icon-button,
+.text-button {
+  height: 40px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #22302d;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(34, 48, 45, 0.12);
+  cursor: pointer;
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease,
+    transform 140ms ease,
+    opacity 140ms ease;
+}
+
+.icon-button {
+  min-width: 40px;
+}
+
+.text-button {
+  min-width: 98px;
+  padding: 0 14px;
+  font-weight: 700;
+}
+
+.compact-button {
+  min-width: 76px;
+}
+
+.icon-button:hover:not(:disabled),
+.text-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #ffffff;
+  border-color: rgba(47, 107, 95, 0.26);
+}
+
+.icon-button:disabled,
+.text-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.icon-button.is-active,
+.primary-action {
+  color: #ffffff;
+  background: #2f6b5f;
+  border-color: #2f6b5f;
+}
+
+.icon-button.has-text {
+  min-width: 116px;
+  padding: 0 18px;
+}
+
+.timer-stage {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 16px;
+}
+
+.timer-display {
+  width: min(56vh, 410px);
+  max-width: 100%;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+
+.timer-ring {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 14px;
+  background:
+    conic-gradient(var(--phase-color) var(--progress), rgba(34, 48, 45, 0.08) 0),
+    #ffffff;
+  box-shadow:
+    0 18px 42px rgba(31, 52, 47, 0.12),
+    inset 0 0 0 1px rgba(34, 48, 45, 0.08);
+}
+
+.timer-core {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 8px;
+  background: linear-gradient(180deg, #ffffff, #f8f8f4);
+  color: #1e2b28;
+}
+
+.timer-display-rest .timer-core {
+  color: #8a3f26;
+}
+
+.phase-label {
+  color: #5f6d69;
+  font-size: 16px;
+}
+
+.time-left {
+  font-size: 72px;
+  line-height: 1;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
+.cycle-strip {
+  min-height: 36px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #66716d;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(34, 48, 45, 0.1);
+}
+
+.cycle-strip strong {
+  color: #203832;
+  font-size: 18px;
+}
+
+.notice-line {
+  min-height: 34px;
+  padding: 5px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #5e6a66;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(34, 48, 45, 0.09);
+  font-size: 13px;
+}
+
+.notice-line span {
+  min-width: 76px;
+  padding: 4px 10px;
+  text-align: center;
+}
+
+.notice-line span:first-child {
+  border-radius: 999px;
+  color: #ffffff;
+  background: #203832;
+}
+
+.control-dock {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) auto minmax(260px, 0.85fr);
+  align-items: stretch;
+  gap: 12px;
+}
+
+.settings-inline,
+.session-log {
+  min-width: 0;
+  border-radius: 8px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(34, 48, 45, 0.1);
+}
+
+.settings-inline {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+}
+
+.stepper {
+  min-width: 128px;
+  display: grid;
+  gap: 6px;
+  color: #5f6d69;
+  font-size: 13px;
+}
+
+.stepper input {
+  width: 66px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid rgba(34, 48, 45, 0.13);
+  background: rgba(255, 255, 255, 0.9);
+  color: #1d2926;
+  text-align: center;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.unit {
+  min-width: 36px;
+  color: #6d7774;
+  font-size: 13px;
+}
+
+.tool-row {
+  min-width: 258px;
+  align-self: stretch;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(34, 48, 45, 0.1);
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  color: #24332f;
+}
+
+.panel-heading h2 {
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+.log-list {
+  height: 86px;
+  overflow: auto;
+  display: grid;
+  align-content: start;
+  gap: 6px;
+}
+
+.log-item {
+  min-height: 25px;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  align-items: center;
+  gap: 10px;
+  color: #46524f;
+  font-size: 13px;
+}
+
+.log-item time {
+  color: #77827e;
+  font-variant-numeric: tabular-nums;
+}
+
+.empty-log {
+  height: 62px;
+  display: grid;
+  place-items: center;
+  color: #7a8581;
+  font-size: 13px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.app-shell.is-mini {
+  min-height: 100vh;
+  padding: 10px;
+  grid-template-rows: auto 1fr;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.app-shell.is-mini .brand-mark {
+  width: 34px;
+  height: 34px;
+  font-size: 14px;
+}
+
+.app-shell.is-mini .brand h1 {
+  max-width: 116px;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.app-shell.is-mini .brand p,
+.app-shell.is-mini .control-dock,
+.app-shell.is-mini .cycle-strip,
+.app-shell.is-mini .notice-line {
+  display: none;
+}
+
+.app-shell.is-mini .topbar {
+  gap: 8px;
+}
+
+.app-shell.is-mini .window-actions {
+  gap: 5px;
+}
+
+.app-shell.is-mini .window-actions .icon-button {
+  width: 33px;
+  min-width: 33px;
+  height: 33px;
+}
+
+.app-shell.is-mini .timer-stage {
+  align-content: start;
+  gap: 10px;
+}
+
+.app-shell.is-mini .timer-display {
+  width: 150px;
+}
+
+.app-shell.is-mini .timer-ring {
+  padding: 8px;
+}
+
+.app-shell.is-mini .timer-core {
+  gap: 4px;
+}
+
+.app-shell.is-mini .phase-label {
+  font-size: 12px;
+}
+
+.app-shell.is-mini .time-left {
+  font-size: 30px;
+}
+
+.app-shell.is-mini .primary-controls {
+  gap: 6px;
+}
+
+.app-shell.is-mini .primary-controls .icon-button {
+  height: 36px;
+  min-width: 36px;
+}
+
+.app-shell.is-mini .primary-controls .icon-button.has-text {
+  min-width: 84px;
+  padding: 0 12px;
+}
+
+@media (max-width: 920px) {
+  .app-shell {
+    grid-template-rows: auto auto auto;
+    padding: 16px;
+  }
+
+  .control-dock {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-inline,
+  .tool-row {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .topbar {
+    align-items: flex-start;
+  }
+
+  .brand h1 {
+    font-size: 20px;
+  }
+
+  .time-left {
+    font-size: 54px;
+  }
+
+  .settings-inline {
+    flex-wrap: wrap;
+  }
+}
